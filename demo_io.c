@@ -8,10 +8,11 @@
 
 int main(int argc,char *argv[])
 {
+    //umask
     umask(0000);
 
     char str[10];
-
+    //open
     int fd = open("file.txt",O_CREAT|O_RDONLY,0666);
     if(fd ==-1)
     {
@@ -21,17 +22,18 @@ int main(int argc,char *argv[])
     else
     {
         memset(str,0,10);
-       int ret =  read(fd,str,10);
-       if(ret == -1)
-       {
+        //read from file.txt
+        int ret =  read(fd,str,10);
+        if(ret == -1)
+        {
             printf("file read error!\n");
             exit(1);
-       }
-       else{
+        }
+        else{
             printf("str len = %d",(int)strlen(str));
             puts(str);
        }
-
+       //close file.txt
        close(fd);
     
     }
